@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Quiz · Black VEX A Travessia · 05/12</title>
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#111210;--panel:#191a17;--gold:#e9c87f;--text:#f5f2e9;--muted:#b8b8ae;--lime:#beff00;--line:rgba(233,200,127,.28)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer}
+.app{max-width:520px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+.screen{display:none;flex:1;flex-direction:column}
+.screen.on{display:flex}
+.hero{position:relative}
+.hero img{width:100%;height:auto}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:35%;background:linear-gradient(transparent,var(--bg))}
+.pad{padding:22px 20px 28px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:3px;color:var(--gold);margin:0 0 12px}
+h1{font-size:28px;line-height:1.2;letter-spacing:-.6px;margin:0 0 12px}
+h2{font-size:23px;line-height:1.25;letter-spacing:-.4px;margin:0 0 20px}
+em{font-style:normal;color:var(--gold)}
+p{line-height:1.6;color:var(--muted);margin:0 0 16px}
+.date{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:6px 0 20px;font-size:18px}
+.date b{color:var(--gold)}
+.cta{width:100%;border:0;border-radius:8px;background:var(--lime);color:#111;font-weight:800;font-size:18px;padding:18px 16px;box-shadow:0 0 22px rgba(190,255,0,.35);letter-spacing:.3px}
+.cta:active{transform:scale(.99)}
+.small{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
+.top{padding:18px 20px 0}
+.bar{height:6px;background:#26271f;border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .35s}
+.step{font-size:12px;letter-spacing:2px;color:var(--gold);margin:12px 0 0;font-weight:700}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{width:100%;text-align:left;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:16px 16px;font-size:16px;line-height:1.4;display:flex;gap:12px;align-items:flex-start}
+.opt:hover,.opt:focus-visible{border-color:var(--gold);outline:none}
+.opt .ico{font-size:20px;line-height:1.2}
+.opt small{display:block;color:var(--muted);font-size:13.5px;margin-top:3px}
+.banner{position:relative;border-radius:12px;overflow:hidden;margin:0 0 20px}
+.banner img{width:100%;height:150px;object-fit:cover;opacity:.75}
+.banner span{position:absolute;left:16px;bottom:14px;font-size:12px;letter-spacing:3px;color:var(--gold);font-weight:700}
+.result-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:0 0 22px}
+.result-card h3{margin:0 0 8px;font-size:21px;color:var(--gold)}
+.result-card p{margin:0}
+.steps3{display:grid;gap:10px;margin:0 0 22px}
+.steps3 div{border-left:2px solid var(--gold);padding:2px 0 2px 12px}
+.steps3 b{display:block;font-size:12px;letter-spacing:2px;color:var(--gold)}
+.offer{text-align:center;border:1px solid var(--gold);border-radius:12px;padding:18px;margin:0 0 18px;background:radial-gradient(ellipse at 50% 0%,#30291d 0,transparent 70%)}
+.offer .price{font-size:40px;font-weight:800;color:var(--text);letter-spacing:-1px;margin:4px 0}
+.offer .price small{font-size:16px;font-weight:700;color:var(--gold)}
+.rapha{display:flex;gap:14px;align-items:center;margin:0 0 22px}
+.rapha img{width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--gold)}
+.rapha p{margin:0;font-size:14px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#26271f;border:1px solid var(--gold);color:var(--text);padding:12px 16px;border-radius:8px;font-size:14px;display:none;max-width:90%;text-align:center}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- CAPA -->
+  <section class="screen on" id="s0">
+    <div class="hero"><img src="img/capa-topo.jpg" alt="Rapha Tarso · Black VEX · A Travessia" width="914" height="930"></div>
+    <div class="pad">
+      <p class="eyebrow">TESTE DE 1 MINUTO</p>
+      <h1>Em qual <em>deserto</em> você está vivendo hoje?</h1>
+      <p>Responda 5 perguntas rápidas e descubra o que está travando a sua travessia para a Terra Prometida.</p>
+      <div class="date"><b>Sábado, 05/12</b> · Imersão A Travessia ao vivo</div>
+      <button class="cta" data-go="1">FAZER O TESTE →</button>
+      <p class="small">Leva menos de 1 minuto.</p>
+    </div>
+  </section>
+
+  <!-- PERGUNTAS -->
+  <section class="screen" id="q">
+    <div class="top">
+      <div class="bar"><i id="bar"></i></div>
+      <p class="step" id="step"></p>
+    </div>
+    <div class="pad" id="qbody"></div>
+  </section>
+
+  <!-- RESULTADO -->
+  <section class="screen" id="r">
+    <div class="pad">
+      <div class="banner"><img src="img/deserto.jpg" alt="Deserto ao pôr do sol"><span>SEU RESULTADO</span></div>
+      <h2 id="rtitle"></h2>
+      <div class="result-card"><h3 id="rarea"></h3><p id="rtext"></p></div>
+      <p>O deserto não precisa ser o seu destino. Na <em>Imersão A Travessia</em>, vamos usar a jornada do Egito à Terra Prometida para olhar para a sua história:</p>
+      <div class="steps3">
+        <div><b>1 · RECONHECER</b>Identificar os padrões que se repetem na sua vida.</div>
+        <div><b>2 · COMPREENDER</b>Olhar para os medos e decisões que te fazem andar em círculos.</div>
+        <div><b>3 · AVANÇAR</b>Entender o que precisa mudar para viver com prosperidade, propósito e equilíbrio.</div>
+      </div>
+      <div class="rapha"><img src="img/rapha.jpg" alt="Rapha Tarso"><p><b style="color:var(--text)">Rapha Tarso</b><br>Criador do Método VEX</p></div>
+      <div class="offer">
+        <p class="eyebrow" style="margin:0">BLACK VEX · A TRAVESSIA</p>
+        <div class="date" style="border:0;margin:6px 0 2px;padding:0"><b>Sábado, 05/12</b> · online e ao vivo</div>
+        <div class="price"><small>INGRESSO</small> R$ 9,90</div>
+        <p style="margin:0">Ao final, a maior condição de Black Friday do ano para você se tornar meu aluno no Método VEX.</p>
+      </div>
+      <button class="cta" id="checkout">QUERO MEU INGRESSO →</button>
+      <p class="small">Ingresso de R$ 9,90 para a Imersão ao vivo.</p>
+    </div>
+  </section>
+
+</div>
+<div class="toast" id="toast">Cópia para apresentação: o link do checkout de R$ 9,90 entra aqui.</div>
+
+<script>
+// Link do checkout de R$ 9,90 (o Victor vai criar). Enquanto estiver vazio, o botão só mostra um aviso.
+const CHECKOUT_URL = '';
+
+const AREAS = {
+  emocional: {nome: 'O deserto emocional', txt: 'O medo, a insegurança e a autocobrança travam suas decisões. Você sabe que precisa mudar, mas continua adiando o primeiro passo.'},
+  relacional: {nome: 'O deserto dos relacionamentos', txt: 'As mesmas discussões se repetem. Falta diálogo, sobra desgaste e você se sente distante até de quem está perto.'},
+  financeiro: {nome: 'O deserto financeiro', txt: 'Você trabalha muito, mas o dinheiro nunca parece suficiente. As contas consomem sua renda e seus planos ficam sempre para depois.'},
+  espiritual: {nome: 'O deserto espiritual', txt: 'Você sente falta de conexão com Deus, de propósito e de clareza sobre o caminho que está seguindo.'}
+};
+
+const Q = [
+  {t: 'Em qual área da sua vida você sente que está no <em>deserto</em>?', o: [
+    ['💔', 'Nos relacionamentos', 'As mesmas discussões e a mesma distância se repetem', {relacional: 3}],
+    ['😔', 'No emocional', 'Medo, insegurança e autocobrança travam minhas decisões', {emocional: 3}],
+    ['💸', 'Na vida financeira', 'Trabalho muito e o dinheiro nunca é suficiente', {financeiro: 3}],
+    ['🙏', 'Na vida espiritual', 'Sinto falta de conexão com Deus e de propósito', {espiritual: 3}]
+  ]},
+  {t: 'Há quanto tempo você sente que está <em>andando em círculos</em>?', o: [
+    ['⏳', 'Há poucos meses', '', {}],
+    ['📅', 'De 1 a 3 anos', '', {}],
+    ['🔁', 'Mais de 3 anos', '', {}],
+    ['🌵', 'Sinto que a vida inteira', '', {}]
+  ]},
+  {t: 'O que mais pesa no seu coração hoje?', o: [
+    ['🤍', 'Não conseguir viver um relacionamento estável e feliz', '', {relacional: 2}],
+    ['🌀', 'A sensação de que algo dentro de mim me sabota', '', {emocional: 2}],
+    ['📉', 'Não conseguir prosperar mesmo me esforçando', '', {financeiro: 2}],
+    ['🧭', 'Não saber qual caminho Deus tem para mim', '', {espiritual: 2}]
+  ]},
+  {t: 'Quando você tenta mudar, o que costuma acontecer?', o: [
+    ['🔂', 'Começo animada(o), mas volto aos mesmos padrões', '', {emocional: 1}],
+    ['😶', 'Me afasto das pessoas e guardo tudo para mim', '', {relacional: 1}],
+    ['🧱', 'Aparece um obstáculo e eu desisto', '', {financeiro: 1}],
+    ['🤷', 'Nem sei por onde começar', '', {espiritual: 1}]
+  ]},
+  {t: 'Você está disposta(o) a dar o primeiro passo para <em>sair do deserto</em>?', o: [
+    ['🔥', 'Sim, estou pronta(o) para a minha travessia', '', {}],
+    ['🙌', 'Sim, mas preciso de direção', '', {}],
+    ['🤔', 'Quero, mas tenho medo', '', {}]
+  ]}
+];
+
+const score = {emocional: 0, relacional: 0, financeiro: 0, espiritual: 0};
+let i = 0;
+const $ = s => document.querySelector(s);
+
+function show(id){ document.querySelectorAll('.screen').forEach(s => s.classList.remove('on')); $(id).classList.add('on'); window.scrollTo(0, 0); }
+
+function renderQ(){
+  const q = Q[i];
+  $('#bar').style.width = ((i) / Q.length * 100) + '%';
+  $('#step').textContent = 'PERGUNTA ' + (i + 1) + ' DE ' + Q.length;
+  $('#qbody').innerHTML = '<h2>' + q.t + '</h2><div class="opts">' + q.o.map((o, k) =>
+    '<button class="opt" data-k="' + k + '"><span class="ico">' + o[0] + '</span><span>' + o[1] + (o[2] ? '<small>' + o[2] + '</small>' : '') + '</span></button>'
+  ).join('') + '</div>';
+  $('#qbody').querySelectorAll('.opt').forEach(b => b.onclick = () => {
+    const add = q.o[+b.dataset.k][3];
+    for (const a in add) score[a] += add[a];
+    i++;
+    if (i < Q.length) { renderQ(); window.scrollTo(0, 0); } else result();
+  });
+}
+
+function result(){
+  $('#bar').style.width = '100%';
+  const top = Object.keys(score).sort((a, b) => score[b] - score[a])[0];
+  $('#rtitle').innerHTML = 'Você está atravessando <em>' + AREAS[top].nome.replace('O ', 'o ') + '</em>.';
+  $('#rarea').textContent = AREAS[top].nome;
+  $('#rtext').textContent = AREAS[top].txt;
+  show('#r');
+}
+
+document.querySelector('[data-go]').onclick = () => { show('#q'); renderQ(); };
+$('#checkout').onclick = () => {
+  if (CHECKOUT_URL) { location.href = CHECKOUT_URL + location.search; return; }
+  const t = $('#toast'); t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 3500);
+};
+</script>
+</body>
+</html>
