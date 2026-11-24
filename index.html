@@ -18,9 +18,9 @@ button{font:inherit;cursor:pointer}
 .hero{position:relative}
 .hero img{width:100%;height:auto}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6%;background:linear-gradient(transparent,var(--bg))}
-#q,#r{position:relative}
-#q>.sand,#r>.sand{position:fixed;z-index:0}
-#q .top,#q .pad,#r>.pad{position:relative;z-index:1}
+#s0,#q,#r{position:relative}
+#s0>.sand,#q>.sand,#r>.sand{position:fixed;z-index:0}
+#s0>.hero,#s0>.pad,#q .top,#q .pad,#r>.pad{position:relative;z-index:1}
 .sand{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .banner .sand{z-index:1}
 .banner span{z-index:2}
@@ -35,9 +35,13 @@ em{font-style:normal;color:var(--gold)}
 p{line-height:1.6;color:var(--muted);margin:0 0 16px}
 .date{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:6px 0 20px;font-size:18px}
 .date b{color:var(--gold)}
-.cta{width:100%;min-height:60px;border:1px solid #f6e3a8;border-radius:8px;background:linear-gradient(105deg,#f3d995,#d6ab55);color:#1a1406;font-weight:800;font-size:16px;padding:18px 16px;box-shadow:0 0 28px #e9c87f40;letter-spacing:.3px;transition:transform .2s,box-shadow .2s}
-.cta:hover{box-shadow:0 0 36px #e9c87f70;transform:translateY(-2px)}
+.cta{position:relative;overflow:hidden;width:100%;min-height:60px;border:1px solid #f6e3a8;border-radius:8px;background:linear-gradient(105deg,#f3d995,#d6ab55);color:#1a1406;font-weight:800;font-size:16px;padding:18px 16px;box-shadow:0 0 28px #e9c87f40;letter-spacing:.3px;transition:transform .2s,box-shadow .2s;animation:pulso 2.4s ease-in-out infinite}
+.cta::after{content:"";position:absolute;top:-20%;bottom:-20%;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:brilho 2.8s ease-in-out infinite;pointer-events:none}
+.cta:hover{box-shadow:0 0 40px #e9c87f90;transform:translateY(-2px)}
 .cta:active{transform:translateY(0)}
+@keyframes brilho{0%{left:-60%}55%,100%{left:130%}}
+@keyframes pulso{0%,100%{box-shadow:0 0 18px #e9c87f35;transform:scale(1)}50%{box-shadow:0 0 38px #e9c87f85;transform:scale(1.02)}}
+@media (prefers-reduced-motion:reduce){.cta,.cta::after{animation:none}}
 .small{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
 .top{padding:18px 20px 0}
 .bar{height:6px;background:#26271f;border-radius:6px;overflow:hidden}
@@ -71,6 +75,7 @@ p{line-height:1.6;color:var(--muted);margin:0 0 16px}
 
   <!-- CAPA -->
   <section class="screen on" id="s0">
+    <canvas class="sand" aria-hidden="true"></canvas>
     <div class="hero"><img src="img/capa-topo.jpg" alt="Rapha Tarso · Black VEX · A Travessia" width="914" height="930"><canvas class="sand" aria-hidden="true"></canvas></div>
     <div class="pad">
       <p class="eyebrow">TESTE DE 1 MINUTO</p>
@@ -201,12 +206,12 @@ function sand(cv){
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = cv.clientWidth; h = cv.clientHeight;
     cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.round(w * h / 5000);
+    const n = Math.round(w * h / 2200);
     grains = Array.from({length: n}, () => grain(true));
   }
   function grain(any){
-    return {x: any ? Math.random() * w : -10, y: h * (.45 + Math.random() * .55), r: .3 + Math.random() * .6,
-      vx: .8 + Math.random() * 1.6, vy: -.1 + Math.random() * .2, a: .1 + Math.random() * .25, ph: Math.random() * 6.28};
+    return {x: any ? Math.random() * w : -10, y: h * (.2 + Math.random() * .8), r: .5 + Math.random() * .9,
+      vx: .8 + Math.random() * 1.6, vy: -.1 + Math.random() * .2, a: .3 + Math.random() * .4, ph: Math.random() * 6.28};
   }
   function tick(){
     ctx.clearRect(0, 0, w, h);
@@ -214,7 +219,7 @@ function sand(cv){
       g.ph += .03; g.x += g.vx; g.y += g.vy + Math.sin(g.ph) * .25;
       if (g.x > w + 10 || g.y < -10 || g.y > h + 10) Object.assign(g, grain(false));
       ctx.globalAlpha = g.a * Math.min(1, (w - g.x) / 80, (g.x + 10) / 60);
-      ctx.fillStyle = '#d9b36a';
+      ctx.fillStyle = '#ecd08c';
       ctx.beginPath(); ctx.arc(g.x, g.y, g.r, 0, 6.28); ctx.fill();
     }
     ctx.globalAlpha = 1;
