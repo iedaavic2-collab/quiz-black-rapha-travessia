@@ -193,12 +193,12 @@ function sand(cv){
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = cv.clientWidth; h = cv.clientHeight;
     cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.round(w * h / 900);
+    const n = Math.round(w * h / 5000);
     grains = Array.from({length: n}, () => grain(true));
   }
   function grain(any){
-    return {x: any ? Math.random() * w : -10, y: h * (.25 + Math.random() * .75), r: .4 + Math.random() * 1.4,
-      vx: .6 + Math.random() * 1.8, vy: -.15 + Math.random() * .3, a: .25 + Math.random() * .6, ph: Math.random() * 6.28};
+    return {x: any ? Math.random() * w : -10, y: h * (.45 + Math.random() * .55), r: .3 + Math.random() * .6,
+      vx: .8 + Math.random() * 1.6, vy: -.1 + Math.random() * .2, a: .1 + Math.random() * .25, ph: Math.random() * 6.28};
   }
   function tick(){
     ctx.clearRect(0, 0, w, h);
@@ -206,7 +206,7 @@ function sand(cv){
       g.ph += .03; g.x += g.vx; g.y += g.vy + Math.sin(g.ph) * .25;
       if (g.x > w + 10 || g.y < -10 || g.y > h + 10) Object.assign(g, grain(false));
       ctx.globalAlpha = g.a * Math.min(1, (w - g.x) / 80, (g.x + 10) / 60);
-      ctx.fillStyle = g.r > 1.2 ? '#f3d9a0' : '#e9c87f';
+      ctx.fillStyle = '#d9b36a';
       ctx.beginPath(); ctx.arc(g.x, g.y, g.r, 0, 6.28); ctx.fill();
     }
     ctx.globalAlpha = 1;
