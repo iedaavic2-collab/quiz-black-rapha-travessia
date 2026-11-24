@@ -18,6 +18,10 @@ button{font:inherit;cursor:pointer}
 .hero{position:relative}
 .hero img{width:100%;height:auto}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:35%;background:linear-gradient(transparent,var(--bg))}
+.sand{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.banner .sand{z-index:1}
+.banner span{z-index:2}
+@media (prefers-reduced-motion:reduce){.sand{display:none}}
 .pad{padding:22px 20px 28px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:3px;color:var(--gold);margin:0 0 12px}
 h1{font-size:28px;line-height:1.2;letter-spacing:-.6px;margin:0 0 12px}
@@ -61,7 +65,7 @@ p{line-height:1.6;color:var(--muted);margin:0 0 16px}
 
   <!-- CAPA -->
   <section class="screen on" id="s0">
-    <div class="hero"><img src="img/capa-topo.jpg" alt="Rapha Tarso · Black VEX · A Travessia" width="914" height="930"></div>
+    <div class="hero"><img src="img/capa-topo.jpg" alt="Rapha Tarso · Black VEX · A Travessia" width="914" height="930"><canvas class="sand" aria-hidden="true"></canvas></div>
     <div class="pad">
       <p class="eyebrow">TESTE DE 1 MINUTO</p>
       <h1>Em qual <em>deserto</em> você está vivendo hoje?</h1>
@@ -84,7 +88,7 @@ p{line-height:1.6;color:var(--muted);margin:0 0 16px}
   <!-- RESULTADO -->
   <section class="screen" id="r">
     <div class="pad">
-      <div class="banner"><img src="img/deserto.jpg" alt="Deserto ao pôr do sol"><span>SEU RESULTADO</span></div>
+      <div class="banner"><img src="img/deserto.jpg" alt="Deserto ao pôr do sol"><canvas class="sand" aria-hidden="true"></canvas><span>SEU RESULTADO</span></div>
       <h2 id="rtitle"></h2>
       <div class="result-card"><h3 id="rarea"></h3><p id="rtext"></p></div>
       <p>O deserto não precisa ser o seu destino. Na <em>Imersão A Travessia</em>, vamos usar a jornada do Egito à Terra Prometida para olhar para a sua história:</p>
@@ -180,6 +184,45 @@ function result(){
   $('#rtext').textContent = AREAS[top].txt;
   show('#r');
 }
+
+// Areia voando: grãos dourados soprados da esquerda para a direita
+function sand(cv){
+  const ctx = cv.getContext('2d');
+  let w, h, dpr, grains = [];
+  function size(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = cv.clientWidth; h = cv.clientHeight;
+    cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(w * h / 900);
+    grains = Array.from({length: n}, () => grain(true));
+  }
+  function grain(any){
+    return {x: any ? Math.random() * w : -10, y: h * (.25 + Math.random() * .75), r: .4 + Math.random() * 1.4,
+      vx: .6 + Math.random() * 1.8, vy: -.15 + Math.random() * .3, a: .25 + Math.random() * .6, ph: Math.random() * 6.28};
+  }
+  function tick(){
+    ctx.clearRect(0, 0, w, h);
+    for (const g of grains){
+      g.ph += .03; g.x += g.vx; g.y += g.vy + Math.sin(g.ph) * .25;
+      if (g.x > w + 10 || g.y < -10 || g.y > h + 10) Object.assign(g, grain(false));
+      ctx.globalAlpha = g.a * Math.min(1, (w - g.x) / 80, (g.x + 10) / 60);
+      ctx.fillStyle = g.r > 1.2 ? '#f3d9a0' : '#e9c87f';
+      ctx.beginPath(); ctx.arc(g.x, g.y, g.r, 0, 6.28); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if (cv.offsetParent) requestAnimationFrame(tick); else cv._paused = true;
+  }
+  cv._start = () => { if (cv._paused !== false) { cv._paused = false; size(); tick(); } };
+  window.addEventListener('resize', () => { if (cv.offsetParent) size(); });
+}
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.querySelectorAll('canvas.sand').forEach(c => { sand(c); c._paused = true; });
+  const startVisible = () => document.querySelectorAll('canvas.sand').forEach(c => { if (c.offsetParent) c._start(); });
+  window.__startSand = startVisible;
+  window.addEventListener('load', startVisible);
+}
+const _show = show;
+show = id => { _show(id); window.__startSand && requestAnimationFrame(window.__startSand); };
 
 document.querySelector('[data-go]').onclick = () => { show('#q'); renderQ(); };
 $('#checkout').onclick = () => {
