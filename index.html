@@ -28,13 +28,16 @@ button{font:inherit;cursor:pointer}
 .pad{padding:22px 20px 28px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:3px;color:var(--gold);margin:0 0 12px}
 h1{font-size:28px;line-height:1.2;letter-spacing:-.6px;margin:0 0 12px}
+.titulo{font-family:Impact,'Arial Narrow',Arial,sans-serif;font-stretch:condensed;font-weight:400;text-transform:uppercase;font-size:clamp(32px,9.5vw,42px);line-height:1.02;letter-spacing:-.5px;color:var(--text);margin:0 0 14px}
+.titulo em{color:var(--gold)}
 h2{font-size:23px;line-height:1.25;letter-spacing:-.4px;margin:0 0 20px}
 em{font-style:normal;color:var(--gold)}
 p{line-height:1.6;color:var(--muted);margin:0 0 16px}
 .date{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:6px 0 20px;font-size:18px}
 .date b{color:var(--gold)}
-.cta{width:100%;border:0;border-radius:8px;background:var(--lime);color:#111;font-weight:800;font-size:18px;padding:18px 16px;box-shadow:0 0 22px rgba(190,255,0,.35);letter-spacing:.3px}
-.cta:active{transform:scale(.99)}
+.cta{width:100%;min-height:60px;border:1px solid #f6e3a8;border-radius:8px;background:linear-gradient(105deg,#f3d995,#d6ab55);color:#1a1406;font-weight:800;font-size:16px;padding:18px 16px;box-shadow:0 0 28px #e9c87f40;letter-spacing:.3px;transition:transform .2s,box-shadow .2s}
+.cta:hover{box-shadow:0 0 36px #e9c87f70;transform:translateY(-2px)}
+.cta:active{transform:translateY(0)}
 .small{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
 .top{padding:18px 20px 0}
 .bar{height:6px;background:#26271f;border-radius:6px;overflow:hidden}
@@ -71,7 +74,7 @@ p{line-height:1.6;color:var(--muted);margin:0 0 16px}
     <div class="hero"><img src="img/capa-topo.jpg" alt="Rapha Tarso · Black VEX · A Travessia" width="914" height="930"><canvas class="sand" aria-hidden="true"></canvas></div>
     <div class="pad">
       <p class="eyebrow">TESTE DE 1 MINUTO</p>
-      <h1>Em qual <em>deserto</em> você está vivendo hoje?</h1>
+      <h1 class="titulo">Em qual <em>deserto</em> você está vivendo hoje?</h1>
       <p>Responda 5 perguntas rápidas e descubra o que está travando a sua travessia para a Terra Prometida.</p>
       <div class="date"><b>Sábado, 05/12</b> · Imersão A Travessia ao vivo</div>
       <button class="cta" data-go="1">FAZER O TESTE →</button>
@@ -94,7 +97,7 @@ p{line-height:1.6;color:var(--muted);margin:0 0 16px}
     <canvas class="sand" aria-hidden="true"></canvas>
     <div class="pad">
       <div class="banner"><img src="img/deserto.jpg" alt="Deserto ao pôr do sol"><canvas class="sand" aria-hidden="true"></canvas><span>SEU RESULTADO</span></div>
-      <h2 id="rtitle"></h2>
+      <h2 id="rtitle" class="titulo"></h2>
       <div class="result-card"><h3 id="rarea"></h3><p id="rtext"></p></div>
       <p>O deserto não precisa ser o seu destino. Na <em>Imersão A Travessia</em>, vamos usar a jornada do Egito à Terra Prometida para olhar para a sua história:</p>
       <div class="steps3">
